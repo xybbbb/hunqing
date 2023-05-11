@@ -1,0 +1,258 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "图库";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        background-color: #222;
+    }
+
+    .container1 {
+        position: relative;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-rows: minmax(100px, auto);
+        margin: 20px;
+        grid-auto-flow: dense;
+        grid-gap: 10px;
+    }
+
+        .container1 .box {
+            background-color: #333;
+            padding: 10px;
+            display: gird;
+            font-size: 15px;
+            place-items: center;
+            text-align: center;
+            color: #fff;
+            transition: 0.5s;
+        }
+
+            .container1 .box:hover {
+                background-color: #e91e63;
+            }
+
+            .container1 .box img {
+                position: relative;
+                min-width: 250px;
+                min-height: 200px;
+                margin-bottom: 10px;
+            }
+
+            .container1 .box:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .container1 .box:nth-child(2) {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+
+            .container1 .box:nth-child(4) {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+
+            .container1 .box:nth-child(5) {
+                grid-column: span 3;
+                grid-row: span 1;
+            }
+
+    .box .content .btn {
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .box .content:hover .btn {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+
+    @@media (max-width: 991px) {
+        .container1 {
+            grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+            grid-template-rows: minmax(auto, auto);
+        }
+
+            .container1 .box {
+                grid-column: unset !important;
+                grid-row: unset !important;
+            }
+    }
+</style>
+
+<link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/css/style.css" />
+<div class="header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="logo-area">
+                    <a href="/Mo/Index"><img src="~/Content/img/logo002.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="main-menu-area">
+                    <nav>
+                        <ul id="nav">
+                            <li><a href="/Mo/Index">首页</a></li>
+                            <li>
+                                <a href="/Home/Sheying">婚纱摄影</a>
+                                <ul>
+                                    <li><a href="/Home/Wupin?ii=3">婚纱礼服</a></li>
+                                    <li><a href="/Home/Sheying">婚纱摄影</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/Home/Contact">团队</a>
+                                <ul>
+                                    <li><a href="/Home/Contact/2">化妆师</a></li>
+                                    <li><a href="/Home/Contact/4">司仪</a></li>
+                                    <li><a href="/Home/Contact/1">摄影师</a></li>
+                                    <li><a href="/Home/Contact/3">摄像师</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Home/Lifu">婚庆用品</a></li>
+                            <li><a href="/Home/Hote">婚宴酒店</a></li>
+
+                            <li><a href="/Home/Index">婚礼案例</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 hidden-sm hidden-xs text-right">
+                <div class="main-menu-area">
+                    <ul id="nav">
+                        @if (@Session["uid"] == null)
+                        {
+                            <li>
+                                <a href="@Url.Action("Long", "Home", new { Url = Request.Url.PathAndQuery })">登录</a>
+                            </li>
+
+                            <li><a href="/Home/Long">注册</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/Home/UserZhong">欢迎您：@Session["ui"]</a></li>
+
+                            <li><a href="/Home/Long">注销</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div  style="margin-left:5%; margin-top:1%; "> <h4 style="margin: 0; padding:0">上传图片：<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exam"> 上传图片</button></h4></div>
+<div class="container1">
+
+           
+ @foreach (var item in Model as List<WeddingProject.Models.Images>)
+    {
+        <div class="box" id="tr-@item.id">
+            <div class="content">
+                <img src="~/Content/img/photography/@item.img" />
+
+                <h2 style="text-align: center; font-weight: bold; color:azure;">@(item.name==null?"": item.name)</h2>
+
+                <button class="btn btn-primary " role="button" onclick="up(@item.id)" data-toggle="modal" data-target="#ex">修改</button>
+                <a class="btn btn-primary " onclick="ondel(@item.id,'@(item.name==null?"":item.name)')" role="button">删除</a>
+
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="modal fade" id="exam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="/Mo/Tuu" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="nameInput">姓名：</label>
+                        <input type="text" class="form-control" id="nameInput" name="name" placeholder="请输入名字">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailInput">上传图片：</label>
+                        <input type="file" class="form-control" name="File">
+                    </div>
+                    <!-- 添加其他表单字段 -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">确认添加</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="/Mo/Tuuu" method="post">
+                    <input type="hidden" id="dad" name="id" value="" />
+                    <div class="form-group">
+                        <label for="nameInput">姓名：</label>
+                        <input type="text" class="form-control" id="nameInput" name="name" placeholder="请输入名字">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">确认修改</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/js/jquery-2.1.0.js"></script>
+<script src="~/Content/js/jquery-ui.min.js"></script>
+<script src="~/Content/js/bootstrap.min.js"></script>
+<script>
+  function ondel(id,dd) {
+        if (confirm('确认删除' + dd + ' 吗')){
+
+
+            $.ajax({
+                url: "@Url.Action("Del", "Mo")",
+                method: "POST",
+                data: { id: id },
+                success: function (re) {
+                    // 处理删除成功的情况
+                 
+                    $("#tr-" + id).remove();
+                },
+                error: function () {
+                    // 处理错误情况
+                    alert("删除失败，请重试！");
+                }
+
+            });
+      }
+
+    }
+    function up(id) {
+        document.getElementById('dad').value = id;
+    }
+</script>

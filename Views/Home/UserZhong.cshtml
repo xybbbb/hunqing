@@ -1,0 +1,771 @@
+﻿
+@{ ViewBag.Title = "个人中心";}
+<style>
+    .long {
+        width: 250px;
+    }
+
+    .area {
+        padding-top: 50px;
+        margin: 0 auto;
+        width: 800px;
+    }
+
+    .three {
+        margin-top: 100px;
+    }
+
+    .bind {
+        margin-top: 20px;
+        line-height: 40px;
+        text-indent: 15px;
+    }
+
+    .imp {
+        color: #409eff;
+    }
+
+    .single-col {
+        padding: 5px;
+    }
+
+    .single-card {
+        height: 300px;
+        overflow: auto;
+    }
+
+    .container {
+        margin-top: 40px;
+    }
+
+    #alert {
+        position: fixed;
+        bottom: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgb(124, 25, 30,0.8);
+        color: white;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        opacity:1;
+       
+    }
+
+        #alert.a-a {
+  animation-name: moveDown;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+}
+
+@@keyframes moveDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" style="text-align:center ">
+            <!-- 左侧头像 -->
+            <div style="padding:9% 0">
+                @if (ViewBag.user.img != null)
+                {
+                    <img src="/Content/img/Usertou/@ViewBag.user.img" class="img-circle" alt="头像" style=" width:120px;height:120px;">
+                }
+                else
+                {
+                    <img src="/Content/img/Usertou/you1.png" class="img-circle" alt="头像" style=" width:120px;height:120px;">
+                }
+                <h2 class="product-title" style="margin:10% 0 0 0 "> @ViewBag.user.Name</h2>
+            </div>
+
+        </div>
+        <div class="col-md-9 product">
+            <div class="row ">
+                <h4>我的信息：<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> 编辑个人信息</button></h4>
+            </div>
+            <div class="row" style="margin:0 auto;">
+                <!-- 右侧个人信息 -->
+                <div class="col-md-3 " style="margin:2%; ">
+                    <div class="product-body  ">
+                        <h4 class="product-title">性别：@ViewBag.user.Sex</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 " style="margin:2%;">
+                    <div class="product-body ">
+                        <h4 class="product-title">年龄： @ViewBag.user.Age</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-3" style="margin:2%;">
+                    <div class="product-body ">
+                        <h4 class="product-title">联系方式：@ViewBag.user.Nubler</h4>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin:2%;">
+                    <div class="product-body ">
+                        <h4 class="product-title">钱包余额：@ViewBag.user.Charge  0</h4>
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin:2%;">
+                    <div class="product-body ">
+                        <h4 class="product-title">地址：@ViewBag.user.Addr</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab" style="color:black">我的套餐</a></li>
+                <li><a href="#tab2" style="color:black" data-toggle="tab">我的订单</a></li>
+                <li><a href="~/Mo/Tu/" style="color:black">我的图库</a></li>
+            </ul>
+
+            <!-- 标签页内容 -->
+            <div class="tab-content">
+                <!-- 第一个标签页 -->
+                <div class="tab-pane active" id="tab1">
+                    @foreach (var item in ViewBag.tao ?? new List<WeddingProject.Models.Taocan>())
+                    {
+                        <ul class="list-group" id="ul-@item.ID">
+                            <li class="list-group-item">
+                                @if (item.Name == null)
+                                {
+                                    <span style="font-weight:bold;font-size:20px;">名称：暂无</span>
+                                }
+                                else
+                                {
+                                    <span style="font-weight:bold;font-size:20px;">名称：@item.Name </span>
+                                }
+                            </li>
+                            <li class="list-group-item">
+                                @if ((item.HoID) != null)
+                                {
+                                    <a href="/Home/Hotelx/@item.HoID" class="list-group-item">
+                                        酒店：@item.Hote.name
+                                        <span class="badge">@item.Hote.Price 元</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Home/Hote" class="list-group-item">
+                                        酒店：暂无
+                                        <span class="badge">0元</span>
+                                    </a>
+                                }
+                            </li>
+                            <li class="list-group-item">
+                                @if (item.ChangID != null)
+                                {
+                                    <a href="/Mo/She/@item.ChangID " class="list-group-item">
+                                        场地：@item.Changdi.Name
+                                        <span class="badge">@item.Changdi.Price 元</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Home/Sheying/" class="list-group-item">
+                                        场地：暂无
+                                        <span class="badge">0元</span>
+                                    </a>
+                                }
+                            </li>
+                            <li class="list-group-item">
+                                @if (item.siyi != null)
+                                {
+                                    <a href="/Home/CaXun/@item.siyi" class="list-group-item">
+                                        司仪：@item.Siyi.Name
+                                        <span class="badge">@item.Siyi.price 元</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Home/Contact/4" class="list-group-item">
+                                        司仪：暂无
+                                        <span class="badge">0元</span>
+                                    </a>
+                                }
+
+                            </li>
+                            <li class="list-group-item">
+                                @if (item.huazhuang != null)
+                                {
+                                    <a href="/Home/CaXun/@item.huazhuang" class="list-group-item">
+                                        化妆师：@item.HuaZhu.Name
+                                        <span class="badge">@item.HuaZhu.price 元</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Home/Contact/2" class="list-group-item">
+                                        化妆师：暂无
+                                        <span class="badge">0元</span>
+                                    </a>
+                                }
+
+                            </li>
+                            <li class="list-group-item">
+                                @if (item.sheying != null)
+                                {
+                                    <a href="/Home/CaXun/@item.sheying" class="list-group-item">
+                                        摄影师：@item.SY.Name
+                                        <span class="badge">@item.SY.price 元</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Home/Contact/1" class="list-group-item">
+                                        摄影师：暂无
+                                        <span class="badge">0元</span>
+                                    </a>
+                                }
+
+                            </li>
+                            <li class="list-group-item">
+                                @if (item.shexian != null)
+                                {
+                                    <a href="/Home/CaXun/@item.shexian" class="list-group-item">
+                                        摄像师：@item.SX.Name
+                                        <span class="badge">@item.SX.price 元</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Home/Contact/3" class="list-group-item">
+                                        摄像师：暂无
+                                        <span class="badge">0元</span>
+                                    </a>
+                                }
+
+                            </li>
+                            <li class="list-group-item">
+                                创建日期：@(item.datame != null ? DateTime.Parse(item.datame.ToString()).ToString("yyyy年MM月dd日") : "暂无")
+                                &nbsp;|&nbsp;
+                                预定时间： @(item.jiHua != null ? DateTime.Parse(item.jiHua.ToString()).ToString("yyyy年MM月dd日") : "暂无")
+
+                            <li class="list-group-item">
+                                @if (item.addr == null)
+                                {
+                                    <span>
+                                        预定地址：暂未填写
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        预定地址：@item.addr
+                                    </span>
+                                }
+                            <span class="badge">
+                                @{
+                                    decimal pw = 0;
+                                    pw += (item.Hote?.Price ?? 0) + (item.Changdi?.Price ?? 0) + (item.Siyi?.price ?? 0) + (item.HuaZhu?.price ?? 0) + (item.SY?.price ?? 0) + (item.SX?.price ?? 0);
+
+                                }
+                                @if (item.puty != true)
+                                {
+                                    <span>
+                                        总价@pw 元
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>@item.pirce</span>
+                                }
+                            </span>
+
+
+                            </li>
+                            <li class="list-group-item">
+                                操作：<button type="button" class="btn btn-primary" onclick="update(@item.ID,'@(item.Name ?? "暂无")')" data-toggle="modal" data-target="#editModal" style="margin:9px;"> 修改</button>
+                                <button class="btn btn-primary" onclick="del(@item.ID,'@(item.Name ?? "暂无")')">删除</button>
+                                <span class="badge">
+                                    状态： @(item.puty ? "已支付" : "未支付")
+                                    @if (!item.puty)
+                                    {
+                                        <a href="#" class="btn  btn-warning" data-toggle="modal" onclick="(up(@item.ID,'@(item.Name ?? "暂无")',@pw,'@(item.addr ?? "暂无")') )" data-target="#pay-dialog">
+                                            去支付
+                                        </a>
+                                    }
+                                </span>
+
+                            </li>
+                        </ul>
+
+                    }
+
+                </div>
+
+                <!-- 第二个标签页 -->
+
+                <div class="tab-pane" id="tab2">
+                    <div class="card" style=" min-height:620px;">
+                        <div class="card-header">
+                            <h4>订单信息</h4>
+                        </div>
+                        <div class="product-body ">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>订单号</th>
+                                            <th>产品名称</th>
+                                            <th>数量</th>
+                                            <th>时间</th>
+                                            <th>价格</th>
+                                            <th>地址</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                            <th>详情</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model as List<WeddingProject.Models.dingdan>)
+                                        {
+
+                                            <tr id="tr-@item.id">
+                                                <td>@item.id</td>
+                                                <td>@item.Items.name</td>
+                                                <td>@item.shuliang</td>
+                                                <td>@item.date.ToString("yyyy年MM月dd日")</td>
+                                                <td>￥@item.price</td>
+                                                @if (@item.addr == null)
+                                                {
+                                                    <td><span class="badge badge-success">暂未填写</span></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><span class="badge badge-success">@item.addr</span></td>
+                                                }
+                                                <td>
+
+                                                    @if (item.state == "已支付")
+                                                    {
+                                                        <span class="badge badge-success">
+                                                            @item.state
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <a href="#" class="btn  btn-secondary" data-toggle="modal" onclick="onb(@item.id,'@item.Items.name',@item.price)" data-target="#pay-dia">
+                                                            去支付
+                                                        </a>
+                                                    }
+
+
+                                                </td>
+                                                <td>  <button onclick="ondel(@item.id,'@item.Items.name')" class="btn btn-primary">删除</button></td>
+                                                <td>  <a href="/Home/Gomai/@item.tyid" class="btn btn-primary">详情</a></td>
+                                            </tr>
+
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="alert" class="a-s" style="display:none;">这是一条警告消息！</div>
+
+<div>
+
+    <!--套餐支付-->
+    <div class="modal fade" id="pay-dialog" tabindex="-1" role="dialog" aria-labelledby="pay-dialog-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pay-dialog-label">订单详情</h5>
+
+                </div>
+                <form method="POST" action="/Home/Tao">
+                    <div class="modal-body">
+                        <p><input type="hidden" name="ID" id="product-id" /></p>
+                        <p>名称：<span id="name"></span></p>
+                        <p><input type="hidden" id="price" name="price" readonly /></p>
+                        <p>价格：<span id="ji"></span>元 </p>
+                        <p>
+                            支付方式：
+                            <label><input type="radio" name="puty" value="alipay">支付宝</label>
+                            <label><input type="radio" name="puty" value="wechat">微信支付</label>
+                        </p>
+                        <p>
+                            地址：
+                            <label id="addr"></label>
+
+                        </p>
+                        <div id="app">
+
+                            <div class="form-group">
+                                <label for="date">地址填写：</label>
+                                <div class="input-group date">
+                                    <el-cascader class="long"
+                                                 size="large"
+                                                 :options="pcaTextArr"
+                                                 v-model="selectedOptions3">
+                                    </el-cascader>
+                                </div>
+                                <div class="bind">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="xn" placeholder="详细地址"></textarea>
+                                </div>
+                                <textarea style="display: none;" name="addr">{{selectedOptions3+xn}}</textarea>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">确认支付</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--套餐修改-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">修改数据</h5>
+
+                </div>
+                <form id="editForm" method="POST" action="/Home/Tao">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="package">我的套餐：</label>
+                            <select class="form-select" name="ID" id="package">
+                                @{ int count = 1; // 定义计数器变量
+                                }
+                                <option value="" id="tao" selected></option>
+                                @foreach (var item in ViewBag.tao ?? new List<WeddingProject.Models.Taocan>())
+                                {
+                                    <option value="@item.ID">@count ：@(item?.Name ?? "暂无名称")</option>
+                                    count++;
+
+                                }
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">修改日期：</label>
+                            <div class="input-group date">
+                                <input type="date" class="form-control" id="date" name="jiHua">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">修改名称：</label>
+                            <div class="input-group date">
+                                <input type="text" class="form-control" id="d" placeholder="给您的订单起个名吧" name="Name">
+
+                            </div>
+                        </div>
+                        <div id="app1">
+                            <div class="form-group">
+                                <label for="date">地址填写：</label>
+                                <div class="input-group date">
+                                    <el-cascader class="long" size="large" :options="pcaTextArr" v-model="selectedOptions2">  </el-cascader>
+                                </div>
+                                <div class="bind">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="xin" placeholder="详细地址"></textarea>
+                                    <textarea style="display: none;" name="addr">{{selectedOptions2+xin}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--订单支付-->
+    <div class="modal fade" id="pay-dia" tabindex="-1" role="dialog" aria-labelledby="pay-dialog-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pay-dialog-label">订单详情</h5>
+
+                </div>
+                <form method="POST" action="/Home/Din">
+                    <div class="modal-body">
+                        <p><input type="hidden" name="ID" id="piuod" /></p>
+                        <p>名称：<span id="nayt"></span></p>
+                        <p>价格：<span id="jia"></span>元</p>
+                        <p><input type="hidden" id="pryu" name="price" readonly /></p>
+                        <p>
+                            支付方式：
+                            <label><input type="radio" name="put" value="alipay">支付宝</label>
+                            <label><input type="radio" name="put" value="wechat">微信支付</label>
+                        </p>
+                        <div id="app3">
+                            <div class="form-group">
+                                <label for="date">地址填写：</label>
+                                <div class="input-group date">
+                                    <el-cascader class="long"
+                                                 size="large"
+                                                 :options="pcaTextArr"
+                                                 v-model="selectedOptions3">
+                                    </el-cascader>
+                                </div>
+                                <div class="bind">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="xin" placeholder="详细地址" required></textarea>
+                                </div>
+                                <textarea style="display:none;" name="addr">{{selectedOptions3+xin}}</textarea>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">确认支付</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <!--个人信息修改-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pay-dialog-label">订单详情</h5>
+
+                </div>
+                <div class="modal-body">
+                    <form action="/Mo/Updateuser" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label for="nameInput">姓名：</label>
+                            <input type="text" class="form-control" id="nameInput" name="Name" placeholder="请输入您的姓名" value="@ViewBag.user.Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailInput">年龄：</label>
+                            <input type="number" class="form-control" name="Age" placeholder="请输入您的年龄" value="@ViewBag.user.Age">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailInput">上传头像：</label>
+                            <input type="file" class="form-control" name="File">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailInput">性别：</label>
+                            <select class="form-control" name="Sex">
+                                <option value="@ViewBag.user.Sex" selected>@ViewBag.user.Sex</option>
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div id="app4">
+                                <div class="form-group">
+                                    <label for="date">地址填写：</label>
+                                    <div class="input-group date">
+                                        <el-cascader class="long"
+                                                     size="large"
+                                                     :options="pcaTextArr"
+                                                     v-model="selectedOptions3">
+                                        </el-cascader>
+                                    </div>
+                                    <div class="bind">
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="xin" placeholder="详细地址"></textarea>
+                                    </div>
+                                    <textarea style="display:none;" name="Addr">{{selectedOptions3+xin}}</textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- 添加其他表单字段 -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary">确认修改</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/Scripts/element-china-area-data.iife.js"></script>
+<script src="~/Content/js/vue.js"></script>
+<script src="~/Scripts/chang.js"></script>
+
+<script>
+    const alertBox = document.getElementById('alert');
+
+    // 显示警告框
+    function showAlert(message) {
+        alertBox.textContent = message;
+        alertBox.style.display = 'block';
+        alertBox.classList.add('a-a');
+        // 3秒后隐藏警告框
+        setTimeout(function () {
+            alertBox.style.display = 'none';
+            alertBox.classList.remove('a-a');
+        }, 3200);
+    }
+
+    //套餐删除
+    function del(itemId,name) {
+        if (confirm("确定要删除"+name+"项目吗？")) {
+            $.ajax({
+                url: "@Url.Action("Delete", "Mo")",
+                method: "POST",
+                data: { id: itemId },
+                success: function(result) {
+                    // 处理删除成功的情况
+                    if (result) {
+                        showAlert('套餐'+name + "删除成功！");
+                        $("#ul-" + itemId).remove();
+                    }
+                },
+                error: function() {
+                    // 处理错误情况
+                    showAlert('套餐' + name + "删除失败！");
+                }
+            });
+        }
+    }
+       //选项卡
+    $('a[href="#tab2"]').tab('show');
+    $('button').click(function () {
+        var activeTab = $('.tab-content .tab-pane.active');
+        var data = activeTab.find('input, select').serialize();
+        // 处理选项卡中的数据
+    });
+       //订单删除
+    function ondel(id,dd) {
+        if (confirm('确认删除' + dd + ' 吗')){
+
+
+            $.ajax({
+                url: "@Url.Action("Delit", "Home")",
+                method: "POST",
+                data: { id: id },
+                success: function (re) {
+                    // 处理删除成功的情况
+                    showAlert('订单' + dd+ "删除成功！");
+                    $("#tr-" + id).remove();
+                },
+                error: function () {
+                    // 处理错误情况
+                    showAlert('订单' + dd + "删除失败！");
+                }
+
+            });
+        }
+    }
+       //套餐支付
+    function up(productId,name,price,addr) {
+        var pro = document.getElementById("product-id");
+        var ba = document.getElementById('name');
+        var dy = document.getElementById('price');
+         document.getElementById('ji').innerHTML=price;
+        document.getElementById('addr').innerHTML = addr;
+        ba.innerHTML = name;
+        dy.value = price;
+        pro.value = productId;
+    }
+    //修改套餐
+    function update(id, name) {
+        document.getElementById('tao').value=id;
+        document.getElementById('tao').innerHTML = name;
+    }
+    //订单支付
+    function onb(id, name, pr) {
+        document.getElementById('jia').innerHTML = pr;
+        var a = document.getElementById('piuod');
+        var b = document.getElementById('pryu');
+        var c = document.getElementById('nayt');
+        a.value = id; b.value = pr; c.innerHTML = name;
+    }
+</script>
+@if (TempData["Message"] != null)
+{
+    <script>
+
+    showAlert('@TempData["Message"]')
+    </script>
+}
+<script>
+    //修改地址
+    new Vue({
+        el: "#app",
+        data: function () {
+            return {
+                visible: false,
+                pcaTextArr: elementChinaAreaData.pcaTextArr,
+                xn: "",
+                selectedOptions3: [],
+            };
+        },
+    });
+    //支付地址
+    new Vue({
+        el: "#app1",
+        data: function () {
+            return {
+                visible: false,
+                pcaTextArr: elementChinaAreaData.pcaTextArr,
+                xin: "",
+                selectedOptions2: [],
+            };
+        },
+
+    });
+    //订单地址
+    new Vue({
+        el: "#app3",
+        data: function () {
+            return {
+                visible: false,
+                pcaTextArr: elementChinaAreaData.pcaTextArr,
+                xin: "",
+                selectedOptions3: [],
+            };
+        },
+
+    });
+    //个人信息
+    new Vue({
+        el: "#app4",
+        data: function () {
+            return {
+                visible: false,
+                pcaTextArr: elementChinaAreaData.pcaTextArr,
+                xin: "",
+                selectedOptions3: [],
+            };
+        },
+
+    });
+</script>

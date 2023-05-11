@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "套餐方案";
+}
+@using WeddingProject.Models;
+<style>
+    .a-message:hover {
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+ 
+    }
+</style>
+<div id="screenConent">
+    <div id="screenheader" class="screenheader">
+        <div class="screentype">
+            <div class="row screenrow">
+                <div class="col-md-1  screenname">类型</div>
+                <div class="col-md-11 allscreen">
+                <a href="/Home/Index/"><span class="aaa fontcolor1">不限</span></a>
+                <a href="/Home/Index?id=1" class="aaa">中式</a>
+                <a href="/Home/Index?id=2" class="aaa">西式</a>
+                <a href="/Home/Index?id=3" class="aaa">森系</a>
+                <a href="/Home/Index?id=4" class="aaa">韩式</a>
+                <a href="/Home/Index?id=5" class="aaa">唯美</a>
+                <a href="/Home/Index?id=6" class="aaa">小清新</a>
+                <a href="/Home/Index?id=7" class="aaa">中国风</a>
+                <a href="/Home/Index?id=8" class="aaa">简洁</a>
+                <a href="/Home/Index?id=9" class="aaa">主题</a>
+                <a href="/Home/Index?id=10" class="aaa">大气</a>
+                <a href="/Home/Index?id=11" class="aaa">梦幻</a>
+                <a href="/Home/Index?id=12" class="aaa">复古</a></div>
+            </div>
+        </div>
+        <div class="screenprice">
+            <div class="row screenrow">
+                <div class="col-md-1  screenname">价格</div>
+                <div class="col-md-8 allscreen">
+                    <a href="/Home/Index/" class="aaa fontcolor1">不限</a>
+                    <a href="/Home/Index?Range=5000以下" class="aaa">5000以下</a>
+                    <a href="/Home/Index?Range=5000-10000" class="aaa">5000-10000</a>
+                    <a href="/Home/Index?Range=10000-20000" class="aaa">10000-20000</a>
+                    <a href="/Home/Index?Range=20000-30000" class="aaa">20000-30000</a>
+                    <a href="/Home/Index?Range=30000-50000" class="aaa">30000-50000</a>
+                    <a href="/Home/Index?Range=50000-100000" class="aaa">50000-100000</a>
+                    <a href="/Home/Index?Range=100000以上" class="aaa">100000以上</a></div> <div class="col-md-3 screenserach">
+                        <form class="b-form" action="#" method="post">
+                            <input type="text" value="" />
+                            <a>-</a>
+                            <input type="text" value="" />
+                            <input class="b-submit" type="button" value="确定" />
+                        </form>
+                    </div>
+                </div>
+        </div>
+        <div class="screenenvironment">
+            <div class="row screenrow">
+                <div class="col-md-1  screenname">环境</div>
+                <div class="col-md-11 allscreen"><a href="#" class="aaa fontcolor1">不限</a><a href="#" class="aaa">户外</a><a href="#" class="aaa">教堂</a><a href="#" class="aaa">草坪</a><a href="#" class="aaa">室内</a><a href="#" class="aaa">沙滩</a><a href="#" class="aaa">海边</a><a href="#" class="aaa">其他</a></div>
+            </div>
+        </div>
+        <div class="screenmore">
+            <p>收起</p>
+        </div>
+    </div>
+
+    <div class="a-screen">
+
+        <div class="row  product">
+            <h3>  用户方案:</h3>
+            @foreach (var item in ViewBag.ta as List<WeddingProject.Models.Taocan>)
+            {
+
+                <div class="col-md-3 a-message" style="padding:1%;">
+                    <a href="~/Mo/Ue/@item.ID">
+                        <div class="grid a-grid">
+
+                            <figure class="effect-winston coverage">
+                                @if (@item.ChangID != null)
+                                {
+                                    <img src="~/Content/img/changdi/@item.Changdi.Img" class="img-responsive" alt=" " />
+                                }
+                                else
+                                {
+                                    <img src="/Content/img/screen/e4.jpg" class="img-responsive" alt=" " />}
+                            </figure>
+
+                        </div>
+                        <div class="a-allmsg">
+                            <div class="a-name">@item.Name<span>￥@item.price</span></div>
+                            <div class="a-designer">策划师：@item.UserTB.Name<span><img src="/Content/img/screen/lookeye1.png" /></span></div>
+
+                        </div>
+                    </a>
+                </div>
+
+            }
+            <div aria-label="Page navigation example" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+
+                <ul class="pagination">
+                    @PagerHelper.Pager(ViewBag.TotalItems, ViewBag.PageNumber, ViewBag.PageSize, new Func<int, string>(page => Url.Action("Index", "Home", new { page })))
+                </ul>
+
+            </div>
+        </div>
+        <div class="row  product ">
+            <h3>  推荐方案:</h3>
+            <div class="row">
+                @foreach (var item in ViewBag.tao as List<WeddingProject.Models.Taocan>)
+                {
+
+                    <div class="col-md-3 a-message" style="padding:1%;">
+                        <a href="~/Mo/Ue/@item.ID">
+                            <div class="grid a-grid">
+
+                                <figure class="effect-winston coverage">
+                                    @if (@item.ChangID != null)
+                                    {
+                                        <img src="~/Content/img/changdi/@item.Changdi.Img" class="img-responsive" alt="" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/Content/img/screen/e4.jpg" class="img-responsive" alt=" " />}
+                                </figure>
+
+                            </div>
+                            <div class="a-allmsg">
+                                <div class="a-name">@item.Name<span>￥@item.price</span></div>
+                                <div class="a-designer">策划师：@item.UserTB.Name<span><img src="/Content/img/screen/lookeye1.png" /></span></div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+        </div>
+  
+
+
+<!-- jquery latest version -->
+<script src="/Content/js/vendor/jquery-1.12.0.min.js"></script>
+
+
+
+
+
+<script>
+
+    $(function () {
+        changeText();
+        showScreen();
+        $('.screenmore p').click(function () {
+            if ($(this).text() == '收起') {
+                $(this).text('展开更多');
+            } else {
+                $(this).text('收起');
+            }
+            $(".screenprice,.screenenvironment").slideToggle("slow");
+        })
+
+        function showScreen() {
+            var screenHeight = $('.screenheader').height();
+            var documentHeight = $(window).height();
+            console.log(screenHeight, documentHeight);
+            if (screenHeight >= documentHeight / 2) {
+                $('.screenprice,.screenenvironment').css('display', 'none');
+            } else {
+                $('.screenprice,.screenenvironment').show();
+            }
+        }
+
+        function changeText() {
+            if ($('.screenprice').is(":hidden")) {
+                $('.screenmore p').text('展开更多')
+
+            } else {
+                $('.screenmore p').text('收起')
+            }
+        }
+    })</script>

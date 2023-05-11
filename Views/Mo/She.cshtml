@@ -1,0 +1,268 @@
+﻿
+@{
+    ViewBag.Title = "场地详情";
+}
+
+<link rel="stylesheet" href="/Content/css/style.css" />
+<link rel="stylesheet" href="/Content/css/case-msg.css" />
+    <div id="all-content">
+        <div class="d-topContent">
+            <div class="d-top1">
+                <ul>
+                    <li style="margin-right: 20px;	float: left;">案例图片</li>
+                    <li style="margin-right: 20px;	float: left;">猜你喜欢</li>
+                    <li style="margin-right: 20px;">新人评价</li>
+                </ul>
+            </div>
+        </div>
+        <!--//content-->
+
+        <div id="d-content" style="position: relative;">
+
+            <div class="d-botContent">
+                <div class="d-row d-leftContent">
+                    <ul>
+                        <li v-for="item in arr2"><img :src="item.img" /> </li>
+
+                    </ul>
+                    <div class="d-lookmore"><span>查看剩下的几张图</span></div>
+             
+                </div>
+                <!--详情页面-->
+                <div class="d-row d-rightContent">
+                    <!--详情页标题-->
+                    <h2 class="d-title">纯粹的爱上纯纯的你</h2>
+                    <!--人物姓名-->
+                    <p class="d-name">
+                        <a href="#">@ViewBag.i.Name</a>
+                    </p>
+                    <p class="d-namespeak">为彼此的灵魂寻找一片静谧的栖息地，爱爱情如林间盛开的白玫，鲜活而纯净， 这里佳木葱茏、烛光点点、奶油香甜， 和你分享最原始的自由气息， 我们低吟着浪漫，诗与歌浸染了时光。</p>
+                    <p class="d-time">
+                        <span>类型：@ViewBag.i.type_FengGe.name</span>
+                        <span class="d-spot">/</span>
+                        <span>地点：@ViewBag.i.Addr</span>
+                    </p>
+                    <!--布置费用-->
+                    <p class="d-arrangement">
+                        <span>布置费</span>
+                        <span class="d-arrangementprice">￥@ViewBag.i.Price</span>
+                        <span class="d-pricedetail">报价明细</span>
+                    </p>
+                    <p class="d-weddingteam">婚礼团队（推荐）<span class="d-packup">团队详情</span></p>
+                    <!--策划师显示-->
+                    <div class="d-teamperson">
+                        <a href="#">
+                            <img src="/Content/img/casemsg/man1.jpg" style="border-radius: 50%;" />
+                        </a>
+                        <a href="#">
+                            <img src="/Content/img/casemsg/man1.jpg" style="border-radius: 50%;" />
+                        </a>
+                    </div>
+                    <!--策划师详情-->
+                    <div class="d-teampersondetail">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="/Content/img/casemsg/man1.jpg" /> 策划师-刘奥佳
+                                </a>
+                                <span class="d-personprice">￥2090</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="/Content/img/casemsg/man1.jpg" /> 策划师-肖
+                                </a>
+                                <span class="d-personprice">￥2011</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--婚礼咨询-->
+                    <div class="d-wedding-consult">
+                        <div class="d-consult-content">
+                            <div class="d-consult-title">
+                                <span>婚礼婚宴咨询</span>
+                            </div>
+                            <div class="d-consult-smalltitle">
+                                <span>专业顾问一对一专业解答</span>
+                            </div>
+                            <div class="d-consult-name d-consult-start">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" style="margin:9px; height:35px;">立即下单</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">订单</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editForm" method="POST" action="/Home/Tao">
+                    <div class="modal-body">
+                        <input type="hidden" name="cid" value="@ViewBag.i.ID">
+                        <div class="form-group">
+                            <label for="package">套餐：</label>
+                            <select class="form-select" onchange="updateOrderName()" name="ID" id="dropdownList">
+                                @{
+                                    int count = 1;
+                                }
+                                @foreach (var item in ViewBag.tao ?? new List<WeddingProject.Models.Taocan>())
+                                {
+                                    <option value="@item.ID">@count：@(item?.Name ?? "暂无名称")</option>
+                                    count++;
+                                }
+                                <option value="0">0：新建套餐</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">约定日期：</label>
+                            <div class="input-group date">
+                                <input type="date" class="form-control" id="date" name="jiHua">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">订单名称：</label>
+                            <div class="input-group date" id="namea">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Area End Here -->
+    <script type="text/javascript" src="/Content/js/vue1.js"></script>
+    <!-- jquery latest version -->
+    <script src="/Content/js/vendor/jquery-1.12.0.min.js"></script>
+    <!--尾部组件-->
+    <script type="text/javascript" src="/Content/js/Footer2.js"></script>
+    <!-- main js -->
+    <!--<script src="js/main.js"></script>-->
+    <script>
+        new Vue({
+            el: "#d-content",
+            data: {
+              
+                nowIndex: 0,
+                arr2: [
+                    {
+                        img: '/Content/img/casemsg/casemsg1.jpg'
+                    },
+                    {
+                        img: '/Content/img/casemsg/casemsg2.jpg'
+                    },
+                    {
+                        img: '/Content/img/casemsg/casemsg3.jpg'
+                    },
+                ],
+            },
+            methods: {
+                changeAddItem() {
+                    this.nowIndex++;
+                    if (this.nowIndex == 3) this.nowIndex = 0;
+                },
+                changeReduceItem() {
+                    this.nowIndex--;
+                    if (this.nowIndex == -1) this.nowIndex = 2;
+                }
+            }
+        })
+        $(function () {
+            showMsg();
+            showPerson();
+
+            //查看全文和收起功能
+            function showMsg() {
+                var Otext = $('.d-namespeak').text();
+                var maxLength = 55;
+                var maxWords = $('.d-namespeak').text().substring(0, maxLength);
+                if (Otext.length >= maxLength) {
+                    $('.d-namespeak').html('<span class="p-showmsg">' + maxWords + '...' + '</span>' + '<span class="d-showmsg">全文</span>');
+                    $('.d-showmsg').click(function () {
+                        if ($('.d-showmsg').text() === '全文') {
+                            $('.p-showmsg').html(Otext);
+                            $('.d-showmsg').html('收起');
+                        } else {
+                            $('.p-showmsg').html(maxWords + '...');
+                            $('.d-showmsg').html('全文');
+                        }
+                    })
+                } else {
+                    $('.d-namespeak').html(Otext);
+                }
+            }
+
+            //人物的详细信息
+            function showPerson() {
+                $('.d-weddingteam .d-packup').click(function () {
+
+                    if ($(this).text() == '团队详情') {
+                        $('.d-teamperson').css('display', 'none');
+                        $(this).text('收起')
+                        $('.d-teampersondetail').slideDown("slow");
+                    } else {
+                        $('.d-teamperson').show();
+                        $(this).text('团队详情')
+                        $('.d-teampersondetail').css('display', 'none');
+                    }
+                })
+            }
+            //style="position: absolute; right: 0;top: 0;"
+            var top1 = $('.d-topContent').offset().top;
+            $(window).scroll(function () {
+
+                var win_top = $(this).scrollTop();
+
+                var top = $('.d-topContent').offset().top;
+                if (win_top >= top) {
+                    var win_top1 = $(this).scrollTop();
+                    $(".d-topContent").addClass("sfixed");
+                    // 						$(".d-rightContent").addClass("sfixed1");
+                    //						$('.d-rightContent').css({"position":"absolute","top":win_top1-40,"right":0})　　　　　　
+                }
+
+                if (win_top < top1) {
+                    $(".d-topContent").removeClass("sfixed");
+                    //						$(".d-rightContent").removeClass("sfixed1");
+                    //						$('.d-rightContent').css({"position":"absolute","top":0,"right":0})　　　　　　
+                }
+            })
+
+        })
+    </script>
+    <script>
+        function updateOrderName() {
+            // 获取选中项的值及显示的文字
+            var selectedItemText = $("#dropdownList option:selected").text();
+
+            var originalStr = selectedItemText; // 原始字符串
+            var substring = "："; // 分隔符
+            var index = originalStr.indexOf(substring); // 找到分隔符的位置
+            if (index >= 0) {
+                var result = originalStr.slice(index + 1); // 截取分隔符后面的子串
+                // 将选中项的文字更新到文本框中
+
+                if (result == "暂无名称" || result == "新建套餐") {
+
+                    $("#namea").html('<input type="text" class="form-control"id="order-name" placeholder="给您的订单起个名吧" name="Name">');
+                }
+                else {
+                    $("#namea").html("<span style='align-content:center;color:#ff006e'>" + result + "</span>")
+                }
+            }
+
+        }
+    </script>

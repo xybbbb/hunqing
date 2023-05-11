@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb6e5f70f2c94402bca1541190c90614" Name="Diagram1">
+        <EntityTypeShape EntityType="WeddingDBModel.Admin" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.Changdi" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.dingdan" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.Hote" Width="1.5" PointX="3.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.Images" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.Items" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.Taocan" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.tpye_lei" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.type_FengGe" Width="1.5" PointX="1.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.type_Hote" Width="1.5" PointX="1.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.type_y" Width="1.5" PointX="1.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.UserTB" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingDBModel.Yuan" Width="1.5" PointX="3.75" PointY="21.5" IsExpanded="true" />
+        <AssociationConnector Association="WeddingDBModel.FK_Sheying_type_Hs" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_Taocan_Changdi" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_dingdan_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_dingdan_UserTB" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_Hote_type_Ho" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_Taocan_Hote" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_Images_UserTB" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_HunSha_type_H" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_Taocan_UserTB" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.HZ" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.Shxian" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.Shying" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.SY" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingDBModel.FK_Yuan_type" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WeddingDBModel.Shouyi" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

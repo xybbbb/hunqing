@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "酒店详情";
+}
+
+<script src="~/Scripts/jquery-3.4.1.intellisense.js"></script>
+<!-- 酒店信息 -->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="bend niceties preview-2">
+                <div id="ensign-nivoslider" class="slides">
+                    @if (@ViewBag.Hot.img!=null)
+                    {
+                    <img class="d-block w-100" src="~/Content/img/Hotel/@ViewBag.Hot.img" />
+                    }
+
+                    <img class="d-block w-100" src="~/Content/img/Hotel/theme.jpg" />
+
+                    <img class="d-block w-100" src="~/Content/img/Hotel/news3.jpg" />
+                </div>
+      
+        </div>
+        </div>
+        <div class="col-md-6 product ">
+            <h1>@ViewBag.Hot.name</h1>
+            <p>地址：@ViewBag.Hot.addr</p>
+            <p>价格：@ViewBag.Hot.Price 元/桌</p>
+            <p>容量：@ViewBag.Hot.rongliang 人</p>
+            <p>类型：@ViewBag.Hot.type_Hote.name</p>
+            <p>简介：广州富力君悦大酒店座落于美丽的花城广场一侧，位处广州新中轴线 - 珠江新城的商务中心区，毗邻广州塔及广东省博物馆，亚运会开幕式场馆海心沙、广州大剧院，交通便利，地处地铁3号线及5号线，距广州火车东站及琶州展馆仅10分钟车程。拥有一个层高为6.5米的980平米无柱大宴会厅，330平米大宴会厅前厅及六个多功能会议室，落地玻璃式设计让客人饱览广州中轴线及珠江新城的景色，是珠江三角洲顶级的商务及社交场所。</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" style="margin:9px; height:35px;">加入订单</button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">订单</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editForm" onsubmit="return pan();" method="POST" action="/Home/Tao">
+                <div class="modal-body">
+                    <input type="hidden" name="hid" value="@ViewBag.Hot.id">
+                    <div class="form-group">
+                        <label for="package">套餐：</label>
+                        <select class="form-select" onchange="updateOrderName()" name="ID" id="dropdownList">
+                            @{
+                                int count = 1;
+                            }
+                            @foreach (var item in ViewBag.tao ?? new List<WeddingProject.Models.Taocan>())
+                            {
+                                <option value="@item.ID">@count：@(item?.Name ?? "暂无名称")</option>
+                                count++;
+                            }
+                            <option value="0">0：新建套餐</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">约定日期：</label>
+                        <div class="input-group date">
+                            <input type="date" class="form-control" id="date" name="jiHua">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">订单名称：</label>
+                        <div class="input-group date" id="namea">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary"  >保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- 评论 -->
+<div class="container mt-3">
+    <h2>评论</h2>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <p>用户1：高依稀</p>
+            <p>评分：★★★★★</p>
+            <p>评论内容：五一假期之间，来参加闺蜜的婚礼，定在爱妃堡酒店，室外婚礼室外和教堂结合的一个婚礼，外场布置的非常的惊喜，又浪漫又精致，尤其是甜品区域设置的特别漂亮，还有让宾客摆拍的外场布置都非常的用心。闺蜜的婚纱也订了他们家的，在阳光下特别的闪，满足了所有女孩的少女心，其实可能每个女孩儿都希望有这样的一个婚礼吧，能接受所有亲朋好友的祝福，又能拍出美美的照片。点赞👍</p>
+        </li>
+        <li class="list-group-item">
+            <p>用户2：邢迎彬x</p>
+            <p>评分：★★★★</p>
+            <p>评论内容：首先感谢小伙伴们，给我呈现了一场漂亮、大气、浪漫的婚礼。结婚是个体力活，好在完美的结束了。同时感谢策划师给我们策划的婚礼，真的美美哒。策划师 和我们的交流，沟通中，帮助我们解决婚礼前的问题。我们觉得你们是一个非常专业的团队，谢谢你们给我一场美丽的婚礼。</p>
+        </li>
+        <li class="list-group-item">
+            <p>用户3：张三丰</p>
+            <p>评分：★★★★</p>
+            <p>评论内容：很感谢我的婚礼策划师，人美又很有耐心，我是一个既有强迫症又龟毛的新娘，但策划师真的是不厌其烦。婚礼当天摄影摄像都很给力～布置效果也是相当可以 ，各方面也都照顾得很好。</p>
+        </li>
+    </ul>
+</div>
+<script>
+  function pan() {
+      if (@Session["uid"] == null) {
+          alert("ID不能为空！");
+          return false; // 取消表单提交
+      }
+
+      return true; // 允许表单提交
+
+}
+    function updateOrderName() {
+        // 获取选中项的值及显示的文字
+        var selectedItemText = $("#dropdownList option:selected").text();
+
+        var originalStr = selectedItemText; // 原始字符串
+        var substring = "："; // 分隔符
+        var index = originalStr.indexOf(substring); // 找到分隔符的位置
+        if (index >= 0) {
+            var result = originalStr.slice(index + 1); // 截取分隔符后面的子串
+            // 将选中项的文字更新到文本框中
+
+            if (result == "暂无名称" || result == "新建套餐") {
+
+                $("#namea").html('<input type="text" class="form-control"id="order-name" placeholder="给您的订单起个名吧" name="Name">');
+            }
+            else {
+                $("#namea").html("<span style='align-content:center;color:#ff006e'>" + result + "</span>")
+            }
+        }
+
+    }
+</script>

@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WeddingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Flag" Type="int" />
+        </EntityType>
+        <EntityType Name="Changdi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Img" Type="varchar" MaxLength="200" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Addr" Type="varchar" MaxLength="100" />
+          <Property Name="type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dingdan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Userid" Type="int" Nullable="false" />
+          <Property Name="tyid" Type="int" Nullable="false" />
+          <Property Name="shuliang" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="state" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="addr" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Hote">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="addr" Type="varchar" MaxLength="100" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="rongliang" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="img" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="img" Type="nvarchar" MaxLength="200" />
+          <Property Name="uid" Type="int" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="stat" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shouyi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datatime" Type="date" Nullable="false" />
+          <Property Name="Charge" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Taocan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="uid" Type="int" Nullable="false" />
+          <Property Name="HoID" Type="int" />
+          <Property Name="ChangID" Type="int" />
+          <Property Name="siyi" Type="int" />
+          <Property Name="sheying" Type="int" />
+          <Property Name="shexian" Type="int" />
+          <Property Name="huazhuang" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="puty" Type="bit" />
+          <Property Name="datame" Type="date" />
+          <Property Name="jiHua" Type="date" />
+          <Property Name="addr" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tpye_lei">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="type_FengGe">
+          <Key>
+            <PropertyRef Name="tyid" />
+          </Key>
+          <Property Name="tyid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="type_Hote">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="type_y">
+          <Key>
+            <PropertyRef Name="tyid" />
+          </Key>
+          <Property Name="tyid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTB">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="10" />
+          <Property Name="Nubler" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="img" Type="nvarchar" MaxLength="200" />
+          <Property Name="Addr" Type="nvarchar" MaxLength="100" />
+          <Property Name="Charge" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Yuan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Sex" Type="varchar" MaxLength="10" />
+          <Property Name="Age" Type="int" />
+          <Property Name="typeid" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <Association Name="FK_dingdan_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="dingdan" Type="Self.dingdan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dingdan">
+              <PropertyRef Name="tyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dingdan_UserTB">
+          <End Role="UserTB" Type="Self.UserTB" Multiplicity="1" />
+          <End Role="dingdan" Type="Self.dingdan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTB">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="dingdan">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hote_type_Ho">
+          <End Role="type_Hote" Type="Self.type_Hote" Multiplicity="1" />
+          <End Role="Hote" Type="Self.Hote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_Hote">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hote">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HunSha_type_H">
+          <End Role="tpye_lei" Type="Self.tpye_lei" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tpye_lei">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_UserTB">
+          <End Role="UserTB" Type="Self.UserTB" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTB">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sheying_type_Hs">
+          <End Role="type_FengGe" Type="Self.type_FengGe" Multiplicity="1" />
+          <End Role="Changdi" Type="Self.Changdi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_FengGe">
+              <PropertyRef Name="tyid" />
+            </Principal>
+            <Dependent Role="Changdi">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taocan_Changdi">
+          <End Role="Changdi" Type="Self.Changdi" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Changdi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="ChangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taocan_Hote">
+          <End Role="Hote" Type="Self.Hote" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hote">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="HoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taocan_UserTB">
+          <End Role="UserTB" Type="Self.UserTB" Multiplicity="1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTB">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yuan_type">
+          <End Role="type_y" Type="Self.type_y" Multiplicity="1" />
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_y">
+              <PropertyRef Name="tyid" />
+            </Principal>
+            <Dependent Role="Yuan">
+              <PropertyRef Name="typeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HZ">
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yuan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="huazhuang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Shxian">
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yuan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="shexian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Shying">
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yuan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="sheying" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SY">
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yuan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="siyi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WeddingDBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Changdi" EntityType="Self.Changdi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dingdan" EntityType="Self.dingdan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hote" EntityType="Self.Hote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shouyi" EntityType="Self.Shouyi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Taocan" EntityType="Self.Taocan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tpye_lei" EntityType="Self.tpye_lei" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type_FengGe" EntityType="Self.type_FengGe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type_Hote" EntityType="Self.type_Hote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type_y" EntityType="Self.type_y" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTB" EntityType="Self.UserTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yuan" EntityType="Self.Yuan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dingdan_Items" Association="Self.FK_dingdan_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="dingdan" EntitySet="dingdan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dingdan_UserTB" Association="Self.FK_dingdan_UserTB">
+            <End Role="UserTB" EntitySet="UserTB" />
+            <End Role="dingdan" EntitySet="dingdan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hote_type_Ho" Association="Self.FK_Hote_type_Ho">
+            <End Role="type_Hote" EntitySet="type_Hote" />
+            <End Role="Hote" EntitySet="Hote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HunSha_type_H" Association="Self.FK_HunSha_type_H">
+            <End Role="tpye_lei" EntitySet="tpye_lei" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_UserTB" Association="Self.FK_Images_UserTB">
+            <End Role="UserTB" EntitySet="UserTB" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sheying_type_Hs" Association="Self.FK_Sheying_type_Hs">
+            <End Role="type_FengGe" EntitySet="type_FengGe" />
+            <End Role="Changdi" EntitySet="Changdi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taocan_Changdi" Association="Self.FK_Taocan_Changdi">
+            <End Role="Changdi" EntitySet="Changdi" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taocan_Hote" Association="Self.FK_Taocan_Hote">
+            <End Role="Hote" EntitySet="Hote" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taocan_UserTB" Association="Self.FK_Taocan_UserTB">
+            <End Role="UserTB" EntitySet="UserTB" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yuan_type" Association="Self.FK_Yuan_type">
+            <End Role="type_y" EntitySet="type_y" />
+            <End Role="Yuan" EntitySet="Yuan" />
+          </AssociationSet>
+          <AssociationSet Name="HZ" Association="Self.HZ">
+            <End Role="Yuan" EntitySet="Yuan" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="Shxian" Association="Self.Shxian">
+            <End Role="Yuan" EntitySet="Yuan" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="Shying" Association="Self.Shying">
+            <End Role="Yuan" EntitySet="Yuan" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="SY" Association="Self.SY">
+            <End Role="Yuan" EntitySet="Yuan" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WeddingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Flag" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Changdi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Img" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Addr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="type_FengGe" Relationship="Self.FK_Sheying_type_Hs" FromRole="Changdi" ToRole="type_FengGe" />
+          <NavigationProperty Name="Taocan" Relationship="Self.FK_Taocan_Changdi" FromRole="Changdi" ToRole="Taocan" />
+        </EntityType>
+        <EntityType Name="dingdan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Userid" Type="Int32" Nullable="false" />
+          <Property Name="tyid" Type="Int32" Nullable="false" />
+          <Property Name="shuliang" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_dingdan_Items" FromRole="dingdan" ToRole="Items" />
+          <NavigationProperty Name="UserTB" Relationship="Self.FK_dingdan_UserTB" FromRole="dingdan" ToRole="UserTB" />
+          <Property Name="addr" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Hote">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="rongliang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="type_Hote" Relationship="Self.FK_Hote_type_Ho" FromRole="Hote" ToRole="type_Hote" />
+          <NavigationProperty Name="Taocan" Relationship="Self.FK_Taocan_Hote" FromRole="Hote" ToRole="Taocan" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="uid" Type="Int32" />
+          <NavigationProperty Name="UserTB" Relationship="Self.FK_Images_UserTB" FromRole="Images" ToRole="UserTB" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="dingdan" Relationship="Self.FK_dingdan_Items" FromRole="Items" ToRole="dingdan" />
+          <NavigationProperty Name="tpye_lei" Relationship="Self.FK_HunSha_type_H" FromRole="Items" ToRole="tpye_lei" />
+        </EntityType>
+        <EntityType Name="Taocan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uid" Type="Int32" Nullable="false" />
+          <Property Name="HoID" Type="Int32" />
+          <Property Name="ChangID" Type="Int32" />
+          <Property Name="siyi" Type="Int32" />
+          <Property Name="sheying" Type="Int32" />
+          <Property Name="shexian" Type="Int32" />
+          <Property Name="huazhuang" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="puty" Type="Boolean" />
+          <Property Name="datame" Type="DateTime" Precision="0" />
+          <Property Name="jiHua" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Changdi" Relationship="Self.FK_Taocan_Changdi" FromRole="Taocan" ToRole="Changdi" />
+          <NavigationProperty Name="Hote" Relationship="Self.FK_Taocan_Hote" FromRole="Taocan" ToRole="Hote" />
+          <NavigationProperty Name="UserTB" Relationship="Self.FK_Taocan_UserTB" FromRole="Taocan" ToRole="UserTB" />
+          <NavigationProperty Name="HuaZhu" Relationship="Self.HZ" FromRole="Taocan" ToRole="Yuan" />
+          <NavigationProperty Name="SX" Relationship="Self.Shxian" FromRole="Taocan" ToRole="Yuan" />
+          <NavigationProperty Name="SY" Relationship="Self.Shying" FromRole="Taocan" ToRole="Yuan" />
+          <NavigationProperty Name="Siyi" Relationship="Self.SY" FromRole="Taocan" ToRole="Yuan" />
+          <Property Name="addr" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tpye_lei">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_HunSha_type_H" FromRole="tpye_lei" ToRole="Items" />
+        </EntityType>
+        <EntityType Name="type_FengGe">
+          <Key>
+            <PropertyRef Name="tyid" />
+          </Key>
+          <Property Name="tyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Changdi" Relationship="Self.FK_Sheying_type_Hs" FromRole="type_FengGe" ToRole="Changdi" />
+        </EntityType>
+        <EntityType Name="type_Hote">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Hote" Relationship="Self.FK_Hote_type_Ho" FromRole="type_Hote" ToRole="Hote" />
+        </EntityType>
+        <EntityType Name="type_y">
+          <Key>
+            <PropertyRef Name="tyid" />
+          </Key>
+          <Property Name="tyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Yuan" Relationship="Self.FK_Yuan_type" FromRole="type_y" ToRole="Yuan" />
+        </EntityType>
+        <EntityType Name="UserTB">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Nubler" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Addr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Charge" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="dingdan" Relationship="Self.FK_dingdan_UserTB" FromRole="UserTB" ToRole="dingdan" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_Images_UserTB" FromRole="UserTB" ToRole="Images" />
+          <NavigationProperty Name="Taocan" Relationship="Self.FK_Taocan_UserTB" FromRole="UserTB" ToRole="Taocan" />
+        </EntityType>
+        <EntityType Name="Yuan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="typeid" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Taocan" Relationship="Self.HZ" FromRole="Yuan" ToRole="Taocan" />
+          <NavigationProperty Name="Taocan1" Relationship="Self.Shxian" FromRole="Yuan" ToRole="Taocan" />
+          <NavigationProperty Name="Taocan2" Relationship="Self.Shying" FromRole="Yuan" ToRole="Taocan" />
+          <NavigationProperty Name="Taocan3" Relationship="Self.SY" FromRole="Yuan" ToRole="Taocan" />
+          <NavigationProperty Name="type_y" Relationship="Self.FK_Yuan_type" FromRole="Yuan" ToRole="type_y" />
+        </EntityType>
+        <Association Name="FK_Sheying_type_Hs">
+          <End Role="type_FengGe" Type="Self.type_FengGe" Multiplicity="1" />
+          <End Role="Changdi" Type="Self.Changdi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_FengGe">
+              <PropertyRef Name="tyid" />
+            </Principal>
+            <Dependent Role="Changdi">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taocan_Changdi">
+          <End Role="Changdi" Type="Self.Changdi" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Changdi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="ChangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dingdan_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="dingdan" Type="Self.dingdan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dingdan">
+              <PropertyRef Name="tyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dingdan_UserTB">
+          <End Role="UserTB" Type="Self.UserTB" Multiplicity="1" />
+          <End Role="dingdan" Type="Self.dingdan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTB">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="dingdan">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hote_type_Ho">
+          <End Role="type_Hote" Type="Self.type_Hote" Multiplicity="1" />
+          <End Role="Hote" Type="Self.Hote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_Hote">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hote">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taocan_Hote">
+          <End Role="Hote" Type="Self.Hote" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hote">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="HoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_UserTB">
+          <End Role="UserTB" Type="Self.UserTB" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTB">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HunSha_type_H">
+          <End Role="tpye_lei" Type="Self.tpye_lei" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tpye_lei">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taocan_UserTB">
+          <End Role="UserTB" Type="Self.UserTB" Multiplicity="1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTB">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HZ">
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yuan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="huazhuang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Shxian">
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yuan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="shexian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Shying">
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yuan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="sheying" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SY">
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="0..1" />
+          <End Role="Taocan" Type="Self.Taocan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yuan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Taocan">
+              <PropertyRef Name="siyi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yuan_type">
+          <End Role="type_y" Type="Self.type_y" Multiplicity="1" />
+          <End Role="Yuan" Type="Self.Yuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_y">
+              <PropertyRef Name="tyid" />
+            </Principal>
+            <Dependent Role="Yuan">
+              <PropertyRef Name="typeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WeddingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Changdi" EntityType="Self.Changdi" />
+          <EntitySet Name="dingdan" EntityType="Self.dingdan" />
+          <EntitySet Name="Hote" EntityType="Self.Hote" />
+          <EntitySet Name="Images" EntityType="Self.Images" />
+          <EntitySet Name="Items" EntityType="Self.Items" />
+          <EntitySet Name="Taocan" EntityType="Self.Taocan" />
+          <EntitySet Name="tpye_lei" EntityType="Self.tpye_lei" />
+          <EntitySet Name="type_FengGe" EntityType="Self.type_FengGe" />
+          <EntitySet Name="type_Hote" EntityType="Self.type_Hote" />
+          <EntitySet Name="type_y" EntityType="Self.type_y" />
+          <EntitySet Name="UserTB" EntityType="Self.UserTB" />
+          <EntitySet Name="Yuan" EntityType="Self.Yuan" />
+          <AssociationSet Name="FK_Sheying_type_Hs" Association="Self.FK_Sheying_type_Hs">
+            <End Role="type_FengGe" EntitySet="type_FengGe" />
+            <End Role="Changdi" EntitySet="Changdi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taocan_Changdi" Association="Self.FK_Taocan_Changdi">
+            <End Role="Changdi" EntitySet="Changdi" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dingdan_Items" Association="Self.FK_dingdan_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="dingdan" EntitySet="dingdan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dingdan_UserTB" Association="Self.FK_dingdan_UserTB">
+            <End Role="UserTB" EntitySet="UserTB" />
+            <End Role="dingdan" EntitySet="dingdan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hote_type_Ho" Association="Self.FK_Hote_type_Ho">
+            <End Role="type_Hote" EntitySet="type_Hote" />
+            <End Role="Hote" EntitySet="Hote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taocan_Hote" Association="Self.FK_Taocan_Hote">
+            <End Role="Hote" EntitySet="Hote" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_UserTB" Association="Self.FK_Images_UserTB">
+            <End Role="UserTB" EntitySet="UserTB" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HunSha_type_H" Association="Self.FK_HunSha_type_H">
+            <End Role="tpye_lei" EntitySet="tpye_lei" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taocan_UserTB" Association="Self.FK_Taocan_UserTB">
+            <End Role="UserTB" EntitySet="UserTB" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="HZ" Association="Self.HZ">
+            <End Role="Yuan" EntitySet="Yuan" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="Shxian" Association="Self.Shxian">
+            <End Role="Yuan" EntitySet="Yuan" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="Shying" Association="Self.Shying">
+            <End Role="Yuan" EntitySet="Yuan" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="SY" Association="Self.SY">
+            <End Role="Yuan" EntitySet="Yuan" />
+            <End Role="Taocan" EntitySet="Taocan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yuan_type" Association="Self.FK_Yuan_type">
+            <End Role="type_y" EntitySet="type_y" />
+            <End Role="Yuan" EntitySet="Yuan" />
+          </AssociationSet>
+          <EntitySet Name="Shouyi" EntityType="WeddingDBModel.Shouyi" />
+        </EntityContainer>
+        <EntityType Name="Shouyi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datatime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Charge" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WeddingDBModelStoreContainer" CdmEntityContainer="WeddingDBEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="WeddingDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Changdi">
+            <EntityTypeMapping TypeName="WeddingDBModel.Changdi">
+              <MappingFragment StoreEntitySet="Changdi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Addr" ColumnName="Addr" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dingdan">
+            <EntityTypeMapping TypeName="WeddingDBModel.dingdan">
+              <MappingFragment StoreEntitySet="dingdan">
+                <ScalarProperty Name="addr" ColumnName="addr" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="tyid" ColumnName="tyid" />
+                <ScalarProperty Name="shuliang" ColumnName="shuliang" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hote">
+            <EntityTypeMapping TypeName="WeddingDBModel.Hote">
+              <MappingFragment StoreEntitySet="Hote">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="addr" ColumnName="addr" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="rongliang" ColumnName="rongliang" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="WeddingDBModel.Images">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="WeddingDBModel.Items">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="stat" ColumnName="stat" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taocan">
+            <EntityTypeMapping TypeName="WeddingDBModel.Taocan">
+              <MappingFragment StoreEntitySet="Taocan">
+                <ScalarProperty Name="addr" ColumnName="addr" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="HoID" ColumnName="HoID" />
+                <ScalarProperty Name="ChangID" ColumnName="ChangID" />
+                <ScalarProperty Name="siyi" ColumnName="siyi" />
+                <ScalarProperty Name="sheying" ColumnName="sheying" />
+                <ScalarProperty Name="shexian" ColumnName="shexian" />
+                <ScalarProperty Name="huazhuang" ColumnName="huazhuang" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="puty" ColumnName="puty" />
+                <ScalarProperty Name="datame" ColumnName="datame" />
+                <ScalarProperty Name="jiHua" ColumnName="jiHua" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tpye_lei">
+            <EntityTypeMapping TypeName="WeddingDBModel.tpye_lei">
+              <MappingFragment StoreEntitySet="tpye_lei">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_FengGe">
+            <EntityTypeMapping TypeName="WeddingDBModel.type_FengGe">
+              <MappingFragment StoreEntitySet="type_FengGe">
+                <ScalarProperty Name="tyid" ColumnName="tyid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_Hote">
+            <EntityTypeMapping TypeName="WeddingDBModel.type_Hote">
+              <MappingFragment StoreEntitySet="type_Hote">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_y">
+            <EntityTypeMapping TypeName="WeddingDBModel.type_y">
+              <MappingFragment StoreEntitySet="type_y">
+                <ScalarProperty Name="tyid" ColumnName="tyid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTB">
+            <EntityTypeMapping TypeName="WeddingDBModel.UserTB">
+              <MappingFragment StoreEntitySet="UserTB">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Nubler" ColumnName="Nubler" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="Addr" ColumnName="Addr" />
+                <ScalarProperty Name="Charge" ColumnName="Charge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yuan">
+            <EntityTypeMapping TypeName="WeddingDBModel.Yuan">
+              <MappingFragment StoreEntitySet="Yuan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="typeid" ColumnName="typeid" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shouyi">
+            <EntityTypeMapping TypeName="WeddingDBModel.Shouyi">
+              <MappingFragment StoreEntitySet="Shouyi">
+                <ScalarProperty Name="Charge" ColumnName="Charge" />
+                <ScalarProperty Name="datatime" ColumnName="datatime" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

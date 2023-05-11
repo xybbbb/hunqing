@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Shou";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script src="~/Scripts/Chart.min.js"></script>
+
+
+<div class="container" style="margin-top:30px;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="date" style="color:black;font-weight:bold;font-size:20px;">年份查看：</label>
+                <select class="form-select" id="selectYear">
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item">@item</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="date" id="shou" style="color:black;font-weight:bold;font-size:20px;"></label>
+            </div>
+            <div class="form-group">
+                <label for="date" id="yue" style="color:black;font-weight:bold;font-size:20px;"></label>
+          
+      </div>
+        </div>
+            </div>
+    <div style="width:100%;height: 500px">
+        <canvas id="myChart"></canvas>
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $.ajax({
+            url: "/Mo/GetShouyiData/",
+            dataType: 'json',
+            success: function (data1) {
+                var f = data1.map(function (d) {
+                    return d.y;
+                });
+                const sum = f.reduce((a, b) => a + b, 0); // 计算 f 中元素的和
+                document.getElementById("shou").innerHTML = '本年收益：' + sum.toFixed(2) +'元';
+                const h = (sum / data1.length).toFixed(2);
+
+                document.getElementById("yue").innerHTML = '每月平均：' + h + '元';
+                var yue = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+                var g = data1.map(function (d) {
+                    d.x = yue[d.x - 1]; // 转换为对应的月份名称
+                    return d.x;
+                }).map(function (label, index) {
+                    var value = f[index]; // 显示的数值
+                    return label + ' (' + value + '元)'; // 添加数值到标签字符串后面
+                });
+                var data = {
+                    labels: g,
+                    datasets: [{
+                        label: '收入详情',
+                        data: f,
+                        backgroundColor: 'rgba(75, 198, 195, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        hoverBackgroundColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                }
+                var ctx = document.getElementById('myChart').getContext('2d');
+                myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: data,
+                    options: { }
+                })
+
+            },
+        });
+    });
+    //刷新
+    $("#selectYear").change(function () {
+        var selectedYear = $(this).val();
+        $.ajax({
+            url: "/Mo/GetShouyiData/",
+            data: { id: selectedYear },
+            dataType: 'json',
+            success: function (data1) {
+                // 返回的 JSON 数据转换为要显示的格式
+                var f = data1.map(function (d) { return d.y; });
+
+                const sum = f.reduce((a, b) => a + b, 0); // 计算 f 中元素的和
+
+                document.getElementById("shou").innerHTML = '本年收益：' + sum.toFixed(2) + '元';
+
+                const h = (sum / data1.length).toFixed(2);
+
+                document.getElementById("yue").innerHTML = '每月平均：' + h + '元';
+
+                var yue = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+
+                var g = data1.map(function (d) { d.x = yue[d.x - 1]; // 转换为对应的月份名称
+                    return d.x;
+                }).map(function (label, index) {
+                    var value = f[index];
+                    return label + ' (' + value + '元)'; // 添加数值到标签字符串后面
+                });
+
+                // 更新柱状图数据
+                myChart.data.labels = g;
+                myChart.data.datasets[0].data = f;
+                // 刷新柱状图
+                myChart.update();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "精选套餐";
+}
+<style>
+    .container {
+        margin-top: 40px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+
+
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                精选方案：
+            </li>
+            <li class="list-group-item">
+                @if (ViewBag.tao != null && ViewBag.tao.Hote != null)
+                {
+                    <a href="/Home/Hotelx/@ViewBag.tao.HoID" class="list-group-item">
+                        酒店：@ViewBag.tao.Hote.name
+                        <span class="badge">@ViewBag.tao.Hote.Price 元</span>
+                    </a>
+                }
+            </li>
+
+            <li class="list-group-item">
+                @if (ViewBag.tao != null && ViewBag.tao.Changdi != null)
+                {
+                    <a href="/Mo/She/@ViewBag.tao.ChangID " class="list-group-item">
+                        场地：@ViewBag.tao.Changdi.Name
+                        <span class="badge">@ViewBag.tao.Changdi.Price 元</span>
+                    </a>
+                }
+            </li>
+
+            <li class="list-group-item">
+                @if (ViewBag.tao != null && ViewBag.tao.Siyi != null)
+                {
+                    <a href="/Home/CaXun/@ViewBag.tao.siyi" class="list-group-item">
+                        司仪：@ViewBag.tao.Siyi.Name
+                        <span class="badge">@ViewBag.tao.Siyi.price 元</span>
+                    </a>
+                }
+            </li>
+            <li class="list-group-item">
+                @if (ViewBag.tao != null && ViewBag.tao.HuaZhu != null)
+                {
+                    <a href="/Home/CaXun/@ViewBag.tao.huazhuang" class="list-group-item">
+                        化妆师：@ViewBag.tao.HuaZhu.Name
+                        <span class="badge">@ViewBag.tao.HuaZhu.price 元</span>
+                    </a>
+                }
+            </li>
+            <li class="list-group-item">
+                @if (ViewBag.tao != null && ViewBag.tao.SY != null)
+                {
+                    <a href="/Home/CaXun/@ViewBag.tao.sheying" class="list-group-item">
+                        摄影师：@ViewBag.tao.SY.Name
+                        <span class="badge">@ViewBag.tao.SY.price 元</span>
+                    </a>
+                }
+            </li>
+            <li class="list-group-item">
+                @if (ViewBag.tao != null && ViewBag.tao.SX != null)
+                {
+                    <a href="/Home/CaXun/@ViewBag.tao.shexian" class="list-group-item">
+                        摄像师：@ViewBag.tao.SX.Name
+                        <span class="badge">@ViewBag.tao.SX.price 元</span>
+                    </a>
+                }
+            </li>
+            <li class="list-group-item">
+                @if (ViewBag.tao != null)
+                {
+                    <span>名称：@ViewBag.tao.Name </span>
+                    <span class="badge">总价：@ViewBag.tao.price</span>
+                }
+            </li>
+            <li class="list-group-item">
+      
+                <form action="/Home/Ta/" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" value="@ViewBag.tao.HoID" name="HoID" />
+                    <input type="hidden" value="@ViewBag.tao.ChangID" name="ChangID" />
+                    <input type="hidden" value="@ViewBag.tao.siyi" name="siyi" />
+                    <input type="hidden" value="@ViewBag.tao.huazhuang" name="huazhuang" />
+                    <input type="hidden" value="@ViewBag.tao.sheying" name="sheying" />
+                    <input type="hidden" value="@ViewBag.tao.shexian" name="shexian" />
+                    <input type="hidden" value="@ViewBag.tao.Name" name="Name" />
+                    <input type="hidden" value="@ViewBag.tao.price" name="price" />
+                    <span style="float:right">
+                        <button type="submit" id="mai" class="btn  btn-warning">
+                            去购买
+                        </button>
+                    </span>
+
+                </form>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
